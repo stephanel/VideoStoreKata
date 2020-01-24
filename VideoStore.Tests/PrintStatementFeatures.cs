@@ -5,7 +5,6 @@ namespace VideoStore.Original.Tests
 {
     public class PrintStatementFeatures
     {
-        private readonly Statement _customer;
 
         private readonly Movie _newRelease1 = new Movie("New Release 1", Movie.NEW_RELEASE);
         private readonly Movie _newRelease2 = new Movie("New Release 2", Movie.NEW_RELEASE);
@@ -13,11 +12,8 @@ namespace VideoStore.Original.Tests
         private readonly Movie _children1 = new Movie("Children 1", Movie.CHILDREN);
 
         private readonly Movie _regular1 = new Movie("Regular 1", Movie.REGULAR);
+        private readonly Movie _regular2 = new Movie("Regular 2", Movie.REGULAR);
 
-        public PrintStatementFeatures()
-        {
-            _customer = new Statement(new Customer("Any customer name"));
-        }
 
         //[Fact]
         //public void TestSingleNewReleaseStatement()
@@ -75,19 +71,23 @@ namespace VideoStore.Original.Tests
         [Fact]
         public void PrintStatementForDifferentKindOfMovies()
         {
-            _customer.AddRental(new Rental(_regular1, 1));
-            _customer.AddRental(new Rental(_newRelease1, 2));
-            _customer.AddRental(new Rental(_newRelease2, 3));
-            _customer.AddRental(new Rental(_children1, 4));
+            var statement = new Statement(new Customer("Any customer name"));
 
-            Check.That(_customer.Print())
+            statement.AddRental(new Rental(_regular1, 1));
+            statement.AddRental(new Rental(_regular2, 3));
+            statement.AddRental(new Rental(_newRelease1, 2));
+            statement.AddRental(new Rental(_newRelease2, 3));
+            statement.AddRental(new Rental(_children1, 4));
+
+            Check.That(statement.Print())
                 .IsEqualTo("Rental Record for Any customer name\n" +
                          "\tRegular 1\t2.0\n" +
+                         "\tRegular 2\t3.5\n" +
                          "\tNew Release 1\t6.0\n" +
                          "\tNew Release 2\t9.0\n" +
                          "\tChildren 1\t3.0\n" +
-                         "You owed 20.0\n" +
-                         "You earned 6 frequent renter points \n");
+                         "You owed 23.5\n" +
+                         "You earned 7 frequent renter points \n");
         }
     }
 }
