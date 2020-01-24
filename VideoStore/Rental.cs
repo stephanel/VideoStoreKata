@@ -10,5 +10,9 @@
             Movie      = movie;
             DaysRented = daysRented;
         }
+
+        public int GetFrequentRenterPoints() => Movie.GetFrequentRenterPoints(DaysRented);
+
+        public decimal GetRenterPoints() => Movie.GetRenterPoints(DaysRented);
     }
 }

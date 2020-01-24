@@ -5,13 +5,13 @@ namespace VideoStore.Original.Tests
 {
     public class PrintStatementFeatures
     {
-        private readonly Movie _newRelease1 = new Movie("New Release 1", Movie.NEW_RELEASE);
-        private readonly Movie _newRelease2 = new Movie("New Release 2", Movie.NEW_RELEASE);
+        private readonly Movie _newRelease1 = new NewReleaseMovie("New Release 1");
+        private readonly Movie _newRelease2 = new NewReleaseMovie("New Release 2");
 
-        private readonly Movie _children1 = new Movie("Children 1", Movie.CHILDREN);
+        private readonly Movie _children1 = new ChildrenMovie("Children 1");
 
-        private readonly Movie _regular1 = new Movie("Regular 1", Movie.REGULAR);
-        private readonly Movie _regular2 = new Movie("Regular 2", Movie.REGULAR);
+        private readonly Movie _regular1 = new RegularMovie("Regular 1");
+        private readonly Movie _regular2 = new RegularMovie("Regular 2");
 
         [Fact]
         public void PrintStatementForDifferentKindOfMovies()

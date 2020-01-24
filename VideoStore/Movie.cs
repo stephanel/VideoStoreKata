@@ -1,18 +1,16 @@
 ﻿namespace VideoStore.Original
 {
-    public class Movie
+    public abstract class Movie
     {
-        public const int REGULAR     = 0;
-        public const int NEW_RELEASE = 1;
-        public const int CHILDREN    = 2;
+        public string Title { get; private set; }
 
-        public int PriceCode { get; set; }
-        public virtual string Title { get; }
-
-        public Movie(string title, int priceCode)
+        public Movie(string title)
         {
             Title     = title;
-            PriceCode = priceCode;
         }
+
+        public abstract int GetFrequentRenterPoints(int daysRented);
+
+        public abstract decimal GetRenterPoints(int daysRented);
     }
 }
