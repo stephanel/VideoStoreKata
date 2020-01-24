@@ -5,7 +5,7 @@ namespace VideoStore.Original.Tests
 {
     public class PrintStatementFeatures
     {
-        private readonly Customer _customer;
+        private readonly Statement _customer;
 
         private readonly Movie _newRelease1 = new Movie("New Release 1", Movie.NEW_RELEASE);
         private readonly Movie _newRelease2 = new Movie("New Release 2", Movie.NEW_RELEASE);
@@ -16,7 +16,7 @@ namespace VideoStore.Original.Tests
 
         public PrintStatementFeatures()
         {
-            _customer = new Customer("Any customer name");
+            _customer = new Statement(new Customer("Any customer name"));
         }
 
         //[Fact]
@@ -80,7 +80,7 @@ namespace VideoStore.Original.Tests
             _customer.AddRental(new Rental(_newRelease2, 3));
             _customer.AddRental(new Rental(_children1, 4));
 
-            Check.That(_customer.Statement())
+            Check.That(_customer.Print())
                 .IsEqualTo("Rental Record for Any customer name\n" +
                          "\tRegular 1\t2.0\n" +
                          "\tNew Release 1\t6.0\n" +
