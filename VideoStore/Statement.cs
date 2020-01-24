@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace VideoStore.Original
 {
@@ -13,26 +15,22 @@ namespace VideoStore.Original
 
         public string Print()
         {
+            var customerName = _customer.Name;
             var rentals = _customer.GetRentals();
 
-            var frequentRenterPoints = 0;
-            var totalAmount          = 0m;
-            var result               = "Rental Record for " + _customer.Name + "\n";
+            var totalRenterPoints = rentals.Sum(x => x.GetRenterPoints());
+            var totalFrequentRenterPoints = rentals.Sum(x => x.GetFrequentRenterPoints());
 
-            foreach (var each in rentals)
-            {
-                var thisAmount = each.GetRenterPoints();
+            var rentalStatements = rentals
+                .Select(x => x.GetStatementLine())
+                .ToList();
 
-                result      += "\t" + each.Movie.Title + "\t" + thisAmount.ToString("0.0", CultureInfo.InvariantCulture) + "\n";
-                totalAmount += thisAmount;
-
-                frequentRenterPoints += each.GetFrequentRenterPoints();
-            }
-
-            result += "You owed " + totalAmount.ToString("0.0", CultureInfo.InvariantCulture) + "\n";
-            result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points \n";
-
-            return result;
+            return new StringBuilder()
+                .Append($"Rental Record for {customerName}\n")
+                .Append($"{string.Join("\n", rentalStatements)}\n")
+                .Append($"You owed {totalRenterPoints.ToString("0.0", CultureInfo.InvariantCulture)}\n")
+                .Append($"You earned {totalFrequentRenterPoints.ToString()} frequent renter points \n")
+                .ToString();
         }
     }
 }
