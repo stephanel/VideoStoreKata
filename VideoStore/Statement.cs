@@ -1,30 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace VideoStore.Original
 {
     public class Statement
     {
-        public Customer Customer { get; private set; }
-
-        private readonly List<Rental> _rentals = new List<Rental>();
+        private readonly Customer _customer;
 
         public Statement(Customer customer)
         {
-            Customer = customer;
-        }
-
-        public void AddRental(Rental rental)
-        {
-            _rentals.Add(rental);
+            _customer = customer;
         }
 
         public string Print()
         {
+            var rentals = _customer.GetRentals();
+
             var frequentRenterPoints = 0;
             var totalAmount          = 0m;
-            var result               = "Rental Record for " + Customer.Name + "\n";
-            foreach (var each in _rentals)
+            var result               = "Rental Record for " + _customer.Name + "\n";
+
+            foreach (var each in rentals)
             {
                 var thisAmount = 0m;
 
