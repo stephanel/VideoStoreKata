@@ -1,7 +1,7 @@
 ﻿using NFluent;
 using Xunit;
 
-namespace VideoStore.Original.Tests
+namespace VideoStore.Tests
 {
     public class PrintStatementFeatures
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace VideoStore.Original
+namespace VideoStore
 {
     public class Statement
     {
@@ -32,5 +32,6 @@ namespace VideoStore.Original
                 .Append($"You earned {totalFrequentRenterPoints.ToString()} frequent renter points \n")
                 .ToString();
         }
+
     }
 }

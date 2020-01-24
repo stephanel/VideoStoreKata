@@ -1,6 +1,4 @@
-﻿using VideoStore.Original;
-
-namespace VideoStore
+﻿namespace VideoStore
 {
     public class NewReleaseMovie : Movie
     {

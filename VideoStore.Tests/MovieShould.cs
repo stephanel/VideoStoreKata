@@ -1,6 +1,6 @@
 ﻿using NFluent;
 using System.Collections.Generic;
-using VideoStore.Original;
+using VideoStore;
 using Xunit;
 
 namespace VideoStore.Tests

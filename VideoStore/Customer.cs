@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace VideoStore.Original
+namespace VideoStore
 {
     public class Customer
     {

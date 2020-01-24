@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace VideoStore.Original
+namespace VideoStore
 {
     public class Rental
     {

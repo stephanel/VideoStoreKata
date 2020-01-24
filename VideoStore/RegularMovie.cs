@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VideoStore.Original;
-
-namespace VideoStore
+﻿namespace VideoStore
 {
     public class RegularMovie : Movie
     {

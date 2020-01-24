@@ -1,4 +1,4 @@
-﻿namespace VideoStore.Original
+﻿namespace VideoStore
 {
     public abstract class Movie
     {
